@@ -1,7 +1,9 @@
 from flask import Flask, request, Response
 import requests
 
-app = Flask(__name__)
+# Using a non-standard static_url_path ensures the built-in static file handler
+# won't intercept requests to /static before they reach our proxy handler
+app = Flask(__name__, static_url_path=None, static_folder=None)
 
 # Set the VM URL (Use private IP if in a VNet)
 VM_BASE_URL = "http://gaopeng-devbox.westus2.cloudapp.azure.com:5001"  # Replace with your VM's IP & port
@@ -33,4 +35,4 @@ def health_check():
     return "Proxy is running!", 200
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
