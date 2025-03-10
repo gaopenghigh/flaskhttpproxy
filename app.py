@@ -6,7 +6,7 @@ import requests
 app = Flask(__name__, static_url_path=None, static_folder=None)
 
 # Set the VM URL (Use private IP if in a VNet)
-VM_BASE_URL = "http://gaopeng-devbox.westus2.cloudapp.azure.com:5001"  # Replace with your VM's IP & port
+VM_BASE_URL = "http://10.0.0.4:5001"  # Replace with your VM's IP & port
 
 @app.route("/", defaults={"path": ""}, methods=["GET", "POST", "PUT", "DELETE", "PATCH"])
 @app.route("/<path:path>", methods=["GET", "POST", "PUT", "DELETE", "PATCH"])
